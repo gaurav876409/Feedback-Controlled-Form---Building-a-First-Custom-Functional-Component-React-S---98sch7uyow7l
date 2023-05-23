@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../styles/App.css';
 
 const App = () => {
-  const [rating, setRating] = useState(7);
+  const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
   const [commentError, setCommentError] = useState(false);
 
