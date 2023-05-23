@@ -13,7 +13,7 @@ const App = () => {
   const handleCommentChange = (event) => {
     setComment(event.target.value);
     if (event.target.value.length < 5) {
-      setCommentError('Comment must be at least 5 characters');
+      setCommentError('Comment must be atleast 5 characters');
     } else {
       setCommentError('');
     }
@@ -41,9 +41,7 @@ const App = () => {
         <div>
           <label htmlFor="comment">Comment: </label>
           <textarea id="comment" value={comment} onChange={handleCommentChange} />
-          <p style={{ color: 'red' }} className="comment-error">
-            {commentError}
-          </p>
+          <p style={{ color: 'red' }} className="comment-error">{commentError}</p>
         </div>
         <button type="submit">Submit</button>
       </form>
