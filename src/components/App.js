@@ -1,54 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import '../styles/App.css';
 
 const App = () => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
+  const [commentError, setCommentError] = useState(false);
 
-  const handleRatingChange = (event) => {
-    setRating(event.target.value);
+  const validateComment = () => {
+    const commentLength = comment.length;
+    if (commentLength <= 5) {
+      setCommentError(true);
+    } else {
+      setCommentError(false);
+    }
   };
 
-  const handleCommentChange = (event) => {
-    setComment(event.target.value);
-  };
+  useEffect(() => {
+    validateComment();
+  }, [comment]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Perform any additional actions you want to do with the submitted data
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Prevent the page from refreshing
+    return false;
   };
-
-  const isCommentValid = comment.length >= 5;
-  const commentErrorMessage = 'Comment must be at least 5 characters.';
 
   return (
     <div id="main">
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="rating">Rating: </label>
+          <label htmlFor='rating'>Rating: </label>
           <input
             type="range"
             min="1"
             max="10"
             id="rating"
             value={rating}
-            onChange={handleRatingChange}
+            onChange={(e) => setRating(e.target.value)}
           />
-          <span className="rating">{rating}</span>
+          <span className='rating'>{rating}</span>
         </div>
         <div>
-          <label htmlFor="comment">Comment: </label>
-          <textarea id="comment" value={comment} onChange={handleCommentChange} />
-          {!isCommentValid && (
-            <p style={{ color: 'red' }} className="comment-error">
-              {commentErrorMessage}
-            </p>
-          )}
+          <label htmlFor='comment'>Comment: </label>
+          <textarea
+            id='comment'
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          {commentError && <p style={{ color: 'red' }} className="comment-error">Comment must be atleast 5 characters.</p>}
         </div>
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
     </div>
-  );
-};
+  )
+}
+
 
 export default App;
+
