@@ -4,7 +4,6 @@ import '../styles/App.css';
 const App = () => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
-  const [commentError, setCommentError] = useState('');
 
   const handleRatingChange = (event) => {
     setRating(event.target.value);
@@ -12,16 +11,15 @@ const App = () => {
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
-    if (event.target.value.length < 5) {
-      setCommentError('Comment must be atleast 5 characters');
-    } else {
-      setCommentError('');
-    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Perform any additional actions you want to do with the submitted data
   };
+
+  const isCommentValid = comment.length >= 5;
+  const commentErrorMessage = 'Comment must be at least 5 characters.';
 
   return (
     <div id="main">
@@ -41,7 +39,11 @@ const App = () => {
         <div>
           <label htmlFor="comment">Comment: </label>
           <textarea id="comment" value={comment} onChange={handleCommentChange} />
-          <p style={{ color: 'red' }} className="comment-error">{commentError}</p>
+          {!isCommentValid && (
+            <p style={{ color: 'red' }} className="comment-error">
+              {commentErrorMessage}
+            </p>
+          )}
         </div>
         <button type="submit">Submit</button>
       </form>
