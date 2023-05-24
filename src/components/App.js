@@ -30,14 +30,14 @@ const App = () => {
           Rating:
           <input
             type="range"
-            min={1}
-            max={10}
+            min="1"
+            max="10"
             value={rating}
             onChange={handleRatingChange}
           />
           <span className="rating">{rating}</span>
         </label>
-
+        <br />
         <label>
           Comment:
           <textarea
@@ -47,7 +47,7 @@ const App = () => {
           {/* <p className="comment-error">{commentError}</p> */}
           {commentError && <p style={{ color: 'red' }} className="comment-error">{commentError}</p>}
         </label>
-
+        <br />
         <button type="submit">Submit</button>
       </form>
     </div>
