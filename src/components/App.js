@@ -42,8 +42,8 @@ const App = () => {
           value={comment}
           onChange={handleCommentChange}
         />
-        {/* <p className="comment-error">{commentError}</p> */}
-        {commentError && <p style={{ color: 'red' }} className="comment-error">{commentError}</p>}
+        <p style={{ color: 'red' }} className="comment-error">{commentError}</p>
+        {/* {commentError && <p style={{ color: 'red' }} className="comment-error">{commentError}</p>} */}
         <br />
         <button type="submit">Submit</button>
       </form>
