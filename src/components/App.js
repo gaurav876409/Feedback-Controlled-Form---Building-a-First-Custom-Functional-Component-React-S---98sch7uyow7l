@@ -26,27 +26,23 @@ const App = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Rating:
-          <input
-            type="range"
-            min="1"
-            max="10"
-            value={rating}
-            onChange={handleRatingChange}
-          />
-          <span className="rating">{rating}</span>
-        </label>
+        <label htmlFor="rating">Rating: </label>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={rating}
+          onChange={handleRatingChange}
+        />
+        <span className="rating">{rating}</span>
         <br />
-        <label>
-          Comment:
-          <textarea
-            value={comment}
-            onChange={handleCommentChange}
-          />
-          {/* <p className="comment-error">{commentError}</p> */}
-          {commentError && <p style={{ color: 'red' }} className="comment-error">{commentError}</p>}
-        </label>
+        <label htmlFor='comment'>Comment: </label>
+        <textarea id='comment'
+          value={comment}
+          onChange={handleCommentChange}
+        />
+        {/* <p className="comment-error">{commentError}</p> */}
+        {commentError && <p style={{ color: 'red' }} className="comment-error">{commentError}</p>}
         <br />
         <button type="submit">Submit</button>
       </form>
